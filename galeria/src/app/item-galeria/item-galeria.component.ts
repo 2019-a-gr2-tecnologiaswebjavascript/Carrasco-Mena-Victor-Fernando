@@ -15,6 +15,11 @@ export class ItemGaleriaComponent implements OnInit {
   
   @Input()
   nombreItem;
+
+  url= "https://img.icons8.com/ios/50/000000/beer-bottle-filled.png"
+
+  notas = [1,2,3,4,5,6,7,8,9,10]
+
   constructor() { }
 
   ngOnInit() {
@@ -24,6 +29,23 @@ export class ItemGaleriaComponent implements OnInit {
     alert('Auxilio me desmayo ' + this.nombreItem);
   }
 
+  alertarBlur(){
+    alert('Alertar blur')
+  }
+
+  cambiarImagen(){
+    const cervezaMarca="https://img.icons8.com/color/48/000000/beer-bottle.png";
+    const cerveza="https://img.icons8.com/ios/50/000000/beer-bottle-filled.png";
+    // var url2="https://img.icons8.com/color/48/000000/beer-bottle.png" Nunca definimos con esto
+    // let url3="https://img.icons8.com/color/48/000000/beer-bottle.png"// en caso de que nos sirva cons
+    // let si permite reasignacion
+    if(this.url=== cervezaMarca){
+      this.url = cerveza
+    }else{
+      this.url =cervezaMarca
+    }
+    //this.url = url1;
+  }
 }
 /*
 @DecoratorsClase() // - FUNCION

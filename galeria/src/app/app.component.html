@@ -1,17 +1,10 @@
 <h1 class="rojo">Titulo {{title}}</h1>
 <!-- Interpolación-->
-<app-item-galeria
-  nombreItem="Papitas"
-  textoBoton='A lo bestia'
->
+<app-item-galeria 
+  *ngFor="let flor of arregloFlores"
+  [textoBoton]="flor.nombre"
+  [nombreItem]="flor.descripcion">
+<!-- Es necesario usar siempre las doble comillas-->
 </app-item-galeria>
-<app-item-galeria
-  nombreItem="Carnitas"
-  textoBoton='Gorditas'
->
-</app-item-galeria>
-<app-item-galeria
-  nombreItem="Chicas"
-  textoBoton='Cheveres'
->
-</app-item-galeria>
+ 
+

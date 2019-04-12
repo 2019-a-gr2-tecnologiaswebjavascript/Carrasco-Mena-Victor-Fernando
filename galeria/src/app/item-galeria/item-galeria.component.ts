@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { SWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__ } from '@angular/core/src/change_detection/change_detector_ref';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-item-galeria',
@@ -15,6 +16,18 @@ export class ItemGaleriaComponent implements OnInit {
   
   @Input()
   nombreItem;
+
+  @Output()
+  cambioChela:EventEmitter<boolean> = new EventEmitter()
+
+  @Output()
+  cambioCerveza:EventEmitter<boolean> = new EventEmitter()
+
+  @Input()
+  amarillo;
+
+  @Input()
+  verde;
 
   url= "https://img.icons8.com/ios/50/000000/beer-bottle-filled.png"
 
@@ -40,9 +53,11 @@ export class ItemGaleriaComponent implements OnInit {
     // let url3="https://img.icons8.com/color/48/000000/beer-bottle.png"// en caso de que nos sirva cons
     // let si permite reasignacion
     if(this.url=== cervezaMarca){
-      this.url = cerveza
+      this.url = cerveza;
+      this.cambioChela.emit(true);
     }else{
-      this.url =cervezaMarca
+      this.url =cervezaMarca;
+      this.cambioCerveza.emit(true);
     }
     //this.url = url1;
   }

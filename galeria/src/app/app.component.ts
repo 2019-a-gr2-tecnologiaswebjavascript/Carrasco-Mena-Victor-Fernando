@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -32,6 +32,21 @@ export class AppComponent {
       descripcion:"Cheveres"
     },
   ];
+
+  cambioChela(evento:boolean){
+    //logica para hacerle verde
+    console.log('Llego a chela: ',evento);
+    
+  }
+
+  cambioCerveza(evento:boolean){
+    //logica para hacerle amarillo
+    console.log('Llego a cerveza: ',evento);
+  }
+
+  
+    
+  
 }
 
 

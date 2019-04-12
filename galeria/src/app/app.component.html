@@ -1,9 +1,13 @@
-<h1 class="rojo">Titulo {{title}}</h1>
+<h1 [amarillo]="cambioAmarillo()" [verde]="cambiarVerde()">Titulo {{title}}</h1>
 <!-- Interpolación-->
 <app-item-galeria 
-  *ngFor="let flor of arregloFlores"
+  *ngFor="let flor of arregloFloresJs"
   [textoBoton]="flor.nombre"
-  [nombreItem]="flor.descripcion">
+  [nombreItem]="flor.descripcion"
+  (cambioChela)="cambioChela($event)"
+  (cambioCerveza)="cambioCerveza($event)"
+  
+  >
 <!-- Es necesario usar siempre las doble comillas-->
 </app-item-galeria>
  

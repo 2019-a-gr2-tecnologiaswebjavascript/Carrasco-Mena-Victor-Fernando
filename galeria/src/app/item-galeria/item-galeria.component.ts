@@ -1,21 +1,28 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
 import { SWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__ } from '@angular/core/src/change_detection/change_detector_ref';
 import { EventEmitter } from '@angular/core';
+import { CarritoService } from '../servicios/carrito/carrito.service';
 
 @Component({
   selector: 'app-item-galeria',
   templateUrl: './item-galeria.component.html',
   styleUrls: ['./item-galeria.component.css']
 })
-export class ItemGaleriaComponent implements OnInit {
+export class ItemGaleriaComponent implements OnInit,OnDestroy {
 
   title= 'Licoreria';
+  
+  @Input()
+  titulo;
   
   @Input()
   textoBoton;
   
   @Input()
   nombreItem;
+
+  @Input()
+  notas;
 
   @Output()
   cambioChela:EventEmitter<boolean> = new EventEmitter();
@@ -25,12 +32,17 @@ export class ItemGaleriaComponent implements OnInit {
 
   url= "https://img.icons8.com/ios/50/000000/beer-bottle-filled.png"
 
-  notas = [1,2,3,4,5,6,7,8,9,10]
-
-  constructor() { }
+  // Dependency
+  // Injection
+  // Inyeccion de dependencias
+  // SERVICIOS -> COMPARTIDOS en varios componetes o servicios
+  constructor(private readonly _carritoService: CarritoService) { }
 
   ngOnInit() {
+    console.log("'Empezo'");
+    console.log(this._carritoService.carritoCompras);
   }
+
 
   alertar(){
     alert('Auxilio me desmayo ' + this.nombreItem);
@@ -55,7 +67,24 @@ export class ItemGaleriaComponent implements OnInit {
     }
     //this.url = url1;
   }
+  
 
+  ngOnDestroy(){
+    console.log("'Termino'");
+  }
+
+  agregarCarrito(valorCarrito){
+    //this._carritoService.carritoCompras.push(itemCarrito);
+    const itemCarrito = {
+      valor:valorCarrito,
+      nombreTienda: this.titulo
+    };
+    
+    this._carritoService.carritoCompras
+                        .splice(0,0,valorCarrito);
+    console.log(this._carritoService.carritoCompras);
+  
+  }
 }
 /*
 @DecoratorsClase() // - FUNCION
@@ -76,3 +105,47 @@ class Usuario{
 
   }
 }*/
+
+/*
+Ciclo de vida del componente
+Vivir
+Morir
+
+ngOninit -> OnInit -> Instancia
+
+ngOnDistroy -> OnDestroy
+
+*/
+/*
+- RUTA -> LOGIN/MODULOS/ETC
+  - PAPA [] -> HIJO [] -> HIJA
+    - HIJO [] -> NIETO ()->PAPA
+      - NIETO -> ()->HIJO
+    - HIJA
+      - NIETA
+  - TIO
+    - PRIMO
+
+*/
+
+/*
+# -> modulo
+* -> Componente
+- -> servicio
+
+# ModuloPrincipal (AppModule)
+  * ComponentePrincipal (AppComponent)
+
+
+................................
+# ModuloNotas (NotasModule)
+  * TablaMostrarMateria  
+    _ [] notasPorMateria
+    _ [] nombreBoton
+    _ [] iconoBoton
+    _ () ejecutoAccion
+  * listaMaterias  
+    _ () seleccionoMateria
+
+    [Javascript] -> () -> seleccionoJavascript
+*/

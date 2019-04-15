@@ -1,14 +1,23 @@
-<h1 class="rojo">Titulo {{title}}</h1>
+<h1 [class]="color">Titulo {{title}}</h1>
 <!-- Interpolación-->
-<app-item-galeria 
-  *ngFor="let flor of arregloFloresJs"
-  [textoBoton]="flor.nombre"
-  [nombreItem]="flor.descripcion"
-  (cambioChela)="cambioChela($event)"
-  (cambioCerveza)="cambioCerveza($event)"
-  
-  >
-<!-- Es necesario usar siempre las doble comillas-->
-</app-item-galeria>
- 
+<pre>
+    {{_carritoService.carritoCompras | json}}
+</pre>
+<button (click)="mostrar(true)">Mostrar</button>
+
+<button (click)="mostrar(false)">Ocultar</button>
+<div *ngIf="estaMostrando">
+  <app-item-galeria
+    *ngFor="let flor of arregloFloresJs"
+    [titulo]="flor.titulo"
+    [textoBoton]="flor.nombre"
+    [nombreItem]="flor.descripcion"
+    [notas]="flor.notas"
+    (cambioChela)="cambioChela($event)"
+    (cambioCerveza)="cambioCerveza($event)"
+    
+    >
+  <!-- Es necesario usar siempre las doble comillas-->
+  </app-item-galeria>
+</div>
 

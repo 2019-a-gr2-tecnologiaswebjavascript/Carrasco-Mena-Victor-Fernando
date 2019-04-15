@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class AppComponent {
   title = 'Floreria';
+  color = 'rojo';
 
   arregloFlores = [
     new Flor("Papitas","A lo bestia"),
@@ -36,12 +37,14 @@ export class AppComponent {
   cambioChela(evento:boolean){
     //logica para hacerle verde
     console.log('Llego a chela: ',evento);
+    this.color = 'verde';
     
   }
 
   cambioCerveza(evento:boolean){
     //logica para hacerle amarillo
     console.log('Llego a cerveza: ',evento);
+    this.color = 'amarillo'
   }
 
   

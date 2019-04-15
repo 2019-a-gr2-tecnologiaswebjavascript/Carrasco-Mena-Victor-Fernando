@@ -18,16 +18,10 @@ export class ItemGaleriaComponent implements OnInit {
   nombreItem;
 
   @Output()
-  cambioChela:EventEmitter<boolean> = new EventEmitter()
+  cambioChela:EventEmitter<boolean> = new EventEmitter();
 
   @Output()
-  cambioCerveza:EventEmitter<boolean> = new EventEmitter()
-
-  @Input()
-  amarillo;
-
-  @Input()
-  verde;
+  cambioCerveza:EventEmitter<boolean> = new EventEmitter();
 
   url= "https://img.icons8.com/ios/50/000000/beer-bottle-filled.png"
 
@@ -62,13 +56,6 @@ export class ItemGaleriaComponent implements OnInit {
     //this.url = url1;
   }
 
-  cambiarAmarillo(evento:boolean){
-    
-  }
-
-  cambiarVerde(evento:boolean){
-
-  }
 }
 /*
 @DecoratorsClase() // - FUNCION

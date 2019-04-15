@@ -61,6 +61,14 @@ export class ItemGaleriaComponent implements OnInit {
     }
     //this.url = url1;
   }
+
+  cambiarAmarillo(evento:boolean){
+    
+  }
+
+  cambiarVerde(evento:boolean){
+
+  }
 }
 /*
 @DecoratorsClase() // - FUNCION

@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
 import { SWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__ } from '@angular/core/src/change_detection/change_detector_ref';
 import { EventEmitter } from '@angular/core';
 import { CarritoService } from '../servicios/carrito/carrito.service';
+import {ItemCarritoCompras} from '../interfaces/item-carrito-compras';
 
 @Component({
   selector: 'app-item-galeria',
@@ -73,19 +74,29 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
     console.log("'Termino'");
   }
 
-  agregarCarrito(valorCarrito){
+  agregarCarrito(valorCarrito:string){
     //this._carritoService.carritoCompras.push(itemCarrito);
-    const itemCarrito = {
-      valor:valorCarrito,
-      nombreTienda: this.titulo
+    const itemCarrito:ItemCarritoCompras = {
+      valor: valorCarrito,
+      nombreTienda: this.titulo,
+      fechaCompra:new Date
     };
     
-    this._carritoService.carritoCompras
-                        .splice(0,0,valorCarrito);
-    console.log(this._carritoService.carritoCompras);
+    const respuestaCarrito = this._carritoService.agregarCarritoDeCompras(itemCarrito);
+    console.log(respuestaCarrito);
   
   }
 }
+
+
+//Cuando solo vamos a tipar usamos solo las interfaces.
+/*
+class CarritoCompraClass implements CarritoComprasInterface{
+  valor:string;
+  nombreTienda:string;
+  //fechaCompra?:Date
+  //con el ? decimos que es un campo opcional
+}*/
 /*
 @DecoratorsClase() // - FUNCION
 class Usuario{
@@ -148,4 +159,22 @@ ngOnDistroy -> OnDestroy
     _ () seleccionoMateria
 
     [Javascript] -> () -> seleccionoJavascript
+*/
+/*
+Problema:
+Cuando agregre un item al arreglo, debo de guardar su cantidad.
+en el item nos hace falta, la cantidad.
+
+id -> Valor
+1) Verificar si ya existe ese "item".
+  Existe? -> buscar si existe ese valor
+  1.1 Existe:
+   Aumentamos contador
+  1.2 No existe:
+    Creamos el contador y lo seteamos en 1
+    -> input () -> output()
+    c1 -> 
+    c2 -
+    s1 - L1
+    s2 - L1
 */

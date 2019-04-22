@@ -23,7 +23,7 @@ export class AppComponent {
       descripcion:"A lo bestia",
       notas:[
         'Papitas',
-        'Empanadas',
+        'Hot-Dog',
       ]
       // dato:1,
       // dato1:1.1,
@@ -35,7 +35,7 @@ export class AppComponent {
       nombre:"Carnita",
       descripcion:"Gorditas",
       notas:[
-        'Motes',
+        'Papitas',
         'Fritada',
       ]
     },

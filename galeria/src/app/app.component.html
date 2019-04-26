@@ -6,6 +6,7 @@
 <button (click)="mostrar(true)">Mostrar</button>
 
 <button (click)="mostrar(false)">Ocultar</button>
+
 <div *ngIf="estaMostrando">
   <app-item-galeria
     *ngFor="let flor of arregloFloresJs"

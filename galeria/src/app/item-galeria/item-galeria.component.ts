@@ -35,7 +35,7 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
   // Injection
   // Inyeccion de dependencias
   // SERVICIOS -> COMPARTIDOS en varios componetes o servicios
-  constructor(private readonly _carritoService: CarritoService) { }
+  constructor(private readonly _carritoService:CarritoService) { }
 
   
   alertar(){

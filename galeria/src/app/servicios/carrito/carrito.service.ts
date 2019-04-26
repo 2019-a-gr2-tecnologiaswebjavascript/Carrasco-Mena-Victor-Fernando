@@ -8,7 +8,8 @@ export class CarritoService{
     agregarCarritoDeCompras(
         itemCarrito:ItemCarritoCompras
         ):ItemCarritoCompras[]{
-        const identificador =itemCarrito.valor;
+        const identificador = itemCarrito.valor;
+        const nombreTienda = itemCarrito.nombreTienda;
         let indiceItem = -1
         const existeElItem = this.carritoCompras
             .some(
@@ -21,14 +22,29 @@ export class CarritoService{
                     }
                 }
             )
-        if(existeElItem){
+        
+        const existeLaTienda = this.carritoCompras
+            .some(
+                (item:ItemCarritoCompras,indice)=>{
+                    if(item.nombreTienda == identificador){
+                        indiceItem = indice;
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            )
+
+        if(existeElItem && existeLaTienda){
             this.anadirAlContador(indiceItem);            
         }else{
             this.anadirAlCarrito(itemCarrito);
         }
+
         console.log("Se anadio al carrito", itemCarrito);
         return this.carritoCompras;
     }
+
 
     private anadirAlContador(indice:number){
         this.carritoCompras[indice].cantidad++;

@@ -40,14 +40,11 @@ export class CarritoService{
         }else{
             this.anadirAlCarrito(itemCarrito);
         }
-        
+
         console.log("Se anadio al carrito", itemCarrito);
         return this.carritoCompras;
     }
 
-    private añadirALaTienda(indice:number){
-        this.carritoCompras[indice].nombreTienda
-    }
 
     private anadirAlContador(indice:number){
         this.carritoCompras[indice].cantidad++;

@@ -1,6 +1,4 @@
-import { Component, OnInit, Input, Output, OnDestroy } from '@angular/core';
-import { SWITCH_CHANGE_DETECTOR_REF_FACTORY__POST_R3__ } from '@angular/core/src/change_detection/change_detector_ref';
-import { EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { CarritoService } from '../servicios/carrito/carrito.service';
 import {ItemCarritoCompras} from '../interfaces/item-carrito-compras';
 
@@ -11,7 +9,7 @@ import {ItemCarritoCompras} from '../interfaces/item-carrito-compras';
 })
 export class ItemGaleriaComponent implements OnInit,OnDestroy {
 
-  title= 'Licoreria';
+  static title= 'Licoreria';
   
   @Input()
   titulo;
@@ -39,18 +37,13 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
   // SERVICIOS -> COMPARTIDOS en varios componetes o servicios
   constructor(private readonly _carritoService: CarritoService) { }
 
-  ngOnInit() {
-    console.log("'Empezo'");
-    console.log(this._carritoService.carritoCompras);
-  }
-
-
+  
   alertar(){
     alert('Auxilio me desmayo ' + this.nombreItem);
   }
 
   alertarBlur(){
-    alert('Alertar blur')
+    alert('Alertar blur');
   }
 
   cambiarImagen(){
@@ -69,6 +62,10 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
     //this.url = url1;
   }
   
+  ngOnInit() {
+    console.log("'Empezo'");
+    console.log(this._carritoService.carritoCompras);
+  }
 
   ngOnDestroy(){
     console.log("'Termino'");
@@ -79,10 +76,11 @@ export class ItemGaleriaComponent implements OnInit,OnDestroy {
     const itemCarrito:ItemCarritoCompras = {
       valor: valorCarrito,
       nombreTienda: this.titulo,
-      fechaCompra:new Date
+      fechaCompra:new Date()
     };
     
-    const respuestaCarrito = this._carritoService.agregarCarritoDeCompras(itemCarrito);
+    const respuestaCarrito = this._carritoService
+          .agregarCarritoDeCompras(itemCarrito);
     console.log(respuestaCarrito);
   
   }

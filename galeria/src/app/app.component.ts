@@ -18,12 +18,13 @@ export class AppComponent {
 
   arregloFloresJs = [
     {
-      tiulo:"Don Pepito",
+      titulo:"Don Jose",
       nombre:"Papitas",
       descripcion:"A lo bestia",
       notas:[
-        'Papitas',
         'Hot-Dog',
+        'Papitas',
+        'Hamburguesas'
       ]
       // dato:1,
       // dato1:1.1,
@@ -31,21 +32,22 @@ export class AppComponent {
       // dato4:false,
     },
     {
-      tiulo:"Don Jose",
+      titulo:"Don Pepito",
       nombre:"Carnita",
       descripcion:"Gorditas",
       notas:[
         'Papitas',
-        'Fritada',
+        'Empanadas',
       ]
     },
     {
-      tiulo:"Donia Maria",
+      titulo:"Donia Maria",
       nombre:"Chicas",
       descripcion:"Cheveres",
       notas:[
-        'Papitas',
-        'Empanadas',
+        'Motes',
+        'Fritada',
+        'Papitas'      
       ]
     },
   ];

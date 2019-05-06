@@ -25,5 +25,25 @@ export class AppComponent {
     }
   ]
 
+  arregloAnuncios = [
+    {
+      titulo:"Casa de lujo en el Lago",
+      urlImagen:"assets/anuncio1.jpg",
+      descripcion:"Casas en el lago con excelente vista, acabados de lujo a un excelente precio.",
+      precio:3000000,
+    },
+    {
+      titulo:"Casa terminados de lujo",
+      urlImagen:"assets/anuncio2.jpg",
+      descripcion:"Casa con diseño moderno, así como tecnología inteligente y amoblada",
+      precio:2000000,
+    },
+    {
+      titulo:"Casa con alberca",
+      urlImagen:"assets/anuncio3.jpg",
+      descripcion:"Casa con alberca y acabados de lujo, en la ciudad, excelente oportunidad.",
+      precio:4000000,
+    }
+  ]
 }
 

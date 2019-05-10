@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'rutas';
+
+  rutaHome = ['/home','app'];//segmentos de URL
+  rutaCreditos = ['/creditos'];
 }

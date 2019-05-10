@@ -15,7 +15,7 @@ const routes: Routes = [
     component: RutaHomeComponent
   },
   {
-    path:'creditos',
+    path:'creditos/:idCredito/:numeros',
     component: RutaCreditosComponent
   },
   {
@@ -45,6 +45,11 @@ const routes: Routes = [
   {
     path: "no-encontrada",
     component: RutaNoEncontradaComponent
+  },
+  {
+    path:'',
+    redirectTo:'/home/app',
+    pathMatch:'full'
   }
 ];
 

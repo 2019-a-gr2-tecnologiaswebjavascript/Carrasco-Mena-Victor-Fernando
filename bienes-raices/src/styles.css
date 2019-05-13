@@ -16,6 +16,7 @@ img {
     max-width: 100%;
 }
 .contenedor{
+    width: 95%;
     max-width: 120rem;/** = 1200px**/
     margin: 0 auto;
 }
@@ -60,6 +61,15 @@ h4 {
     display: inline-block;
     text-align: center;
     border: none;
+    display: block;
+    flex: 0 0 100%;
+}
+@media (min-width:768 px){
+  .boton{
+    display: inline-block;
+    flex: 0 0 auto;
+  }
+
 }
 .boton:hover{
     cursor: pointer;
@@ -71,6 +81,7 @@ h4 {
     background-color: #71b100;
 }
 /* Header */
+
 .site-header {
     background-color: #333333;
     padding: 1rem 0 3 rem 0;
@@ -101,6 +112,7 @@ h4 {
     padding-top: 3rem;
 }
 /**Navegacion**/
+
 .navegacion a{
     color:rgba(255,255, 255, 1);
     text-decoration: none;
@@ -226,7 +238,7 @@ h4 {
     width: 15rem;
     height: .5rem;
     background-color: #71b100;
-    
+
     margin-top: 1rem;
 }
 .texto-entrada span{
@@ -234,7 +246,7 @@ h4 {
 }
 /*** Testimoniales ***/
 .testimonial {
-    background-color: #71b100;   
+    background-color: #71b100;
     font-size: 2.4rem;
     padding: 2rem;
     color: #ffffff;
@@ -254,7 +266,7 @@ h4 {
 
 .testimonial blockquote{
     position: relative;
-    padding-left: 5rem; 
+    padding-left: 5rem;
 }
 /** Footer **/
 .site-footer {
@@ -265,7 +277,7 @@ h4 {
 .contenedor-footer{
     padding: 3rem 0;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 .copyright {
     margin: 0;

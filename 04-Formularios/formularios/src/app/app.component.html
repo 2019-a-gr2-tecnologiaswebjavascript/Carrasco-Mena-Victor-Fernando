@@ -2,7 +2,7 @@ Nombre: {{nombre}}
 <br>
 Apellido: {{apellido}}
 <br>
-Consulta: {{q}}
+Cedula: {{cedula}}
 <br>
 
 <pre>Valido: {{formularioUsuario.valid}}</pre>
@@ -49,11 +49,14 @@ Consulta: {{q}}
   required
   minlength="10"
   maxlength="10"
-  pattern="[0-9]"
+  pattern="([0-9]{10})"
   name="cedula" 
   type="text" 
-  [(ngModel)]="cedula">
-
+  [(ngModel)]="cedula"
+  #vtCedula="ngModel">
+  <pre>Error:
+    {{vtCedula.errors | json}}
+  </pre>
   <br>
   <button type="button">Tipo boton</button>
   <br>

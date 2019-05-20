@@ -8,10 +8,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'formularios';
   nombre:string;
-  apellido:string;
-  q:string;
+  apellido:string="Carrasco";
+  cedula:string;
 
   guardarUsuario(formulario){
-    console.log(formulario.controls.nombreUsuario.value);
+    console.log(formulario);
   }
 }

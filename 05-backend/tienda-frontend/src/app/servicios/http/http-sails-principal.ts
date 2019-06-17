@@ -22,6 +22,7 @@ export class HttpSailsPrincipal<ClaseEntidad>{
                     this.modelo = modelo;
     }
 
+    // Crear
     crear(nuevoRegistro:ClaseEntidad):Observable<ClaseEntidad> {
         const url = `${this.url}${this.modelo}`;
         return this.httpClient
@@ -34,7 +35,6 @@ export class HttpSailsPrincipal<ClaseEntidad>{
                     );
     }
 
-    // Crear
 
     // Borrar
 

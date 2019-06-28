@@ -9,6 +9,12 @@ declare var Producto;
 module.exports = {
     // req = peticion = request
     // res = respuesta = response
+    // URL EXPRESSJS => https://expressjs.com/es/4x/api.html
+    // REQUEST SAILSJS => https://sailsjs.com/documentation/reference/request-req
+    // RESPONSE SAILSJS => https://sailsjs.com/documentation/reference/request-req
+
+    // https://github.com/balderdashy/skipper
+
     saludar: async (req, res) => {
         const parametros = req.allParams();
         // req.param('nombre'); => 'Adrian'

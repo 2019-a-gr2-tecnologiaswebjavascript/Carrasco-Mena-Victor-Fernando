@@ -18,8 +18,15 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-
-  '/': { view: 'pages/homepage' },
+  'GET /':{
+    view:'pages/homepage'
+  },
+  'GET /holaMundo':{
+    action:'usuario/saludar'
+  },
+  'POST /cargarArchivo':{
+    action:'usuario/upload'
+  }
 
 
   /***************************************************************************

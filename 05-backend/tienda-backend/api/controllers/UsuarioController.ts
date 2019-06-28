@@ -4,18 +4,77 @@
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
+declare var Producto;
 
 module.exports = {
-  attributes:{
-      nombre:{
-          type:'string'
-      },
-      apellido:{
-          type:'string',
-          required: true
-      }
-  }
+    // req = peticion = request
+    // res = respuesta = response
+    saludar: async (req, res) => {
+        const parametros = req.allParams();
+        // req.param('nombre'); => 'Adrian'
+        console.log(parametros);
+        const nombre = parametros.nombre
+        if(nombre){
+            // PROMESA!!!! -> SYNC
+            try{
+                const productoEncontrado = await Producto.find({
+                    where: {
+                        id:1
+                    },
+                    skip:0,
+                    limit:5,
+                    sort: 'id ASC' // 'id DESC'
+                });
+                return res.ok({
+                    mensaje: `Bienvenido ${nombre}`,
+                    productoEncontrado: productoEncontrado
+                })
+            } catch(e){
+                console.error(e);
+                return res.serverError({
+                    error: 500,
+                    mensaje:'Error del servidor'
+                });
+            }
 
+            
+        }else{
+            return res.serverError({
+                error:400,
+                mensaje:'Peticion invalida'
+            });
+        }
+    },
+
+    upload: (req, res) => {
+        const opcionesCarga = {
+            maxBytes:10000000,
+            dirname: __dirname + '../../archivos'
+        }
+        req.file('imagen')
+            .upload(
+                opcionesCarga,
+                (error, archivosSubidos) => {
+                    if(error){
+                        return res.serverError({
+                            error: 500,
+                            mensaje: 'Error subiendo archivo de imagen'
+                        });
+                    }
+                    const noExistenArchivos = archivosSubidos.length === 0;
+                    if(noExistenArchivos){
+                        return res.badRequest({
+                            error: 400,
+                            mensaje: 'No envia ningun archivo'
+                        });
+                    }else{
+                        console.log(archivosSubidos);
+                        return res.ok({mensaje: 'ok'});
+                    }
+
+                }
+            )
+    }
 };
 
 // protocolo http

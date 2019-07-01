@@ -24,8 +24,11 @@ module.exports.routes = {
   'GET /holaMundo':{
     action:'usuario/saludar'
   },
-  'POST /cargarArchivo':{
+  'POST /cargarArchivo/:idProducto':{
     action:'usuario/upload'
+  },
+  'GET /descargarArchivo/:idProducto': { 
+    action: 'usuario/download' 
   }
 
 

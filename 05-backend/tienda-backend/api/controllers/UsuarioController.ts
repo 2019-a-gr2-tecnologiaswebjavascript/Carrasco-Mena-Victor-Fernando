@@ -6,6 +6,7 @@
  */
 declare var Producto;
 
+
 module.exports = {
     // req = peticion = request
     // res = respuesta = response
@@ -53,14 +54,17 @@ module.exports = {
     },
 
     upload: (req, res) => {
+        const parametros = req.allParams();
         const opcionesCarga = {
             maxBytes:10000000,
             dirname: __dirname + '../../archivos'
         }
-        req.file('imagen')
+
+        if(parametros.idProducto){
+            req.file('imagen')
             .upload(
                 opcionesCarga,
-                (error, archivosSubidos) => {
+                async (error, archivosSubidos) => {
                     if(error){
                         return res.serverError({
                             error: 500,
@@ -75,13 +79,92 @@ module.exports = {
                         });
                     }else{
                         console.log(archivosSubidos);
+                        // LOGICA NEGOCIO
+                        // GUARDAR LOS METADATOS DEL ARCHIVO
+                        // (ID PRODUCTO)
+                        try {
+                            const archivo = archivosSubidos[0];
+                            const respuestaActualizar =
+                                        await Producto.update({
+                                            id: parametros.idProducto
+                                        })
+                                        .set({
+                                            tamanio: archivo.size,
+                                            descriptorArchio:archivo.fd,
+                                            nombreArchivo:archivo.filename,
+                                            tipo: archivo.type
+                                        });
+                                return res.ok({
+                                    mensaje: `Se actualizo el producto ${parametros.idProducto}`
+                                })
+                        } catch (e ) {
+                            return res.error({
+                                error:500,
+                                mensaje:'Error del servidor'
+                            });
+                        }
                         return res.ok({mensaje: 'ok'});
                     }
 
                 }
-            )
-    }
+            );
+        }else{
+            return res.error({
+                error:400,
+                mensaje:'No envia id de producto'
+            })
+        }
+    },
+    download: async (req, res) => {
+        const parametros = req.allParams();
+        if(parametros.idProducto){
+
+            try{
+                const productoEncontrado = 
+                            await Producto.findOne({
+                                id:parametros.idProducto
+                            });
+                
+                if(!productoEncontrado){
+                    return res.badRequest({
+                        error:400,
+                        mensaje:'No existe el producto'
+                    });
+                } else {
+                    if(productoEncontrado.descriptorArchivo){
+
+                        return res.download(
+                            productoEncontrado.descriptorArchivo,
+                            productoEncontrado.nombreArchivo
+                            );
+
+                    } else{
+                        return res.badRequest({
+                            error:400,
+                            mensaje:'No existe el fd'
+                        });
+                    }
+                }
+
+                
+            } catch(e){
+                console.log(e);
+                return res.serverError({
+                    error:500,
+                    mensaje:'No envia el id del producto'
+                });
+            }
+
+        }else{
+            return res.serverError({
+                error:400,
+                mensaje:'No envia el id del producto'
+            });
+        }
+}
 };
+
+
 
 // protocolo http
 // restful web services

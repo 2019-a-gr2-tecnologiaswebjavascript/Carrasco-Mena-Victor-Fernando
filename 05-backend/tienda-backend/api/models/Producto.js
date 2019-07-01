@@ -18,6 +18,18 @@ module.exports = {
       unique:true,
       minLength: 4
     },// Configuracion de papa
+    tamanio:{
+      type:'string'
+    },
+    descriptorArchivo:{
+      type:'string'
+    },
+    nombreArchivo:{
+      type:'string'
+    },
+    tipo:{
+      type:'string'
+    },
     arregloProductosUsuario:{
       collection:'productoUsuario',// Modelo a relacionarse (Hijo)
       via: 'fkProducto' // FK Modelo a relacionarse

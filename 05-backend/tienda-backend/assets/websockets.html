@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Websockets</title>
+</head>
+<body>
+    <script src="dependencies/sails.io.js"></script>
+    <script>
+        // io.sails.url = 'https://myapp.com';
+        /*const socketConexion = io.sails.connect();
+
+        socketConexion.on(
+            'connect', // evento llamado 'connect'
+            () => { // Esta funcion se ejecuta siempre que se emita el
+                    // evento 'connect'
+            console.log("Socket conectado!");
+
+            socketConexion.post(
+                '/temperatura', //url
+                { // datos
+                    medicion:12.094
+                },
+                (resDataTemperatura)=>{//respuesta
+                    console.log(resDataTemperatura);
+                })
+            }
+        );
+
+        socketConexion.on(
+            'disconnect', // evento llamado 'disconnect'
+            () => { // Esta funcion se ejecuta siempre que se emita el
+                    // evento 'disconnect'
+            console.log("Socket desconectado :( !");
+            }
+        );
+
+
+        socketConexion.on(
+            'temperatura', // Nombre del Modelo (Temperatura)
+            (mensaje) => { 
+            console.log("Mensaje: ",mensaje);
+            }
+        );*/
+
+        io.socket.post(
+            '/temperatura', // url
+            {  // datos
+                medicion:1578
+            }, 
+             (respuestaTemperatura) => { // Respuesta
+                 console.log('Respuesta:', respuestaTemperatura);
+        });
+
+        io.socket.get('/temperatura', 
+             (respuestaTemperatura) => { // Respuesta
+                 console.log('Respuesta:', respuestaTemperatura);
+        });
+
+        
+        io.socket.on(
+            'temperatura',  // Nombre del Modelo (Temperatura)
+                (mensaje) => { 
+                    console.log("Mensaje: ", mensaje);
+            });
+
+    </script>
+</body>
+</html>

@@ -4,6 +4,8 @@ import { environment } from 'src/environments/environment';
 import { UsuarioHttpService } from './servicios/http/usuario-http.service';
 import { ProductoHttpService } from './servicios/http/producto-http.service';
 
+declare var io: any;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -12,6 +14,7 @@ import { ProductoHttpService } from './servicios/http/producto-http.service';
 export class AppComponent implements OnInit {
   title = 'tienda-frontend';
   archivo:File;
+  temperaturas:any[] = [];
 
   constructor(private readonly _httpClient: HttpClient,
               private readonly _usuarioHttpService: UsuarioHttpService,
@@ -21,6 +24,27 @@ export class AppComponent implements OnInit {
 
   
   ngOnInit(){
+
+    io.socket.get(
+      '/temperatura',
+      (arreglTemperaturas:any[])=>{
+        this.temperaturas = arreglTemperaturas;
+        console.log(this.temperaturas)
+      }
+    );
+
+    io.socket.on(
+      'temperatura',
+      (respuesta)=>{
+        if (respuesta.verb === 'created') {
+          this.temperaturas.push(respuesta.data);
+        }
+      }
+    )
+
+
+
+
     const usuarioCrear$ = this._usuarioHttpService
       .crear({
         nombre:"Fernando",

@@ -18,24 +18,9 @@ module.exports.routes = {
   * `assets` directory)                                                      *
   *                                                                          *
   ***************************************************************************/
-  'GET /':{
-    view:'pages/homepage'
-  },
-  'GET /holaMundo':{
-    action:'usuario/saludar'
-  },
-  'POST /cargarArchivo/:idProducto':{
-    action:'usuario/upload'
-  },
-  'GET /descargarArchivo/:idProducto': { 
-    action: 'usuario/download' 
-  },
-  'GET /descargarArchivo/:idProducto': { 
-    action: 'usuario/download' 
-  },
-  'POST /prenderLed/:idLed': { 
-    action: 'led/encenderLed' 
-  }
+
+  '/': { view: 'pages/homepage' },
+
 
   /***************************************************************************
   *                                                                          *

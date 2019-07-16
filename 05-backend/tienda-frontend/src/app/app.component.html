@@ -14,4 +14,11 @@ placeholder="seleccionar archivo"
 >
 <h2>Nombre archivo: {{archivo?.name}}</h2>
 <button (click)="enviarArchivo()">Enviar archivo</button>
+
+<ul>
+  <li *ngFor="let temperatura of temperaturas">
+    Temperatura {{temperatura.id}}: {{temperatura.medicion}}
+  </li>
+</ul>
+
 <router-outlet></router-outlet>
